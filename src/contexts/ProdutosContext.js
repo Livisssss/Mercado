@@ -1,9 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   pegarProdutos,
   salvarProduto,
   removerProduto,
 } from "../servicos/requisicoes/produtos";
+
+import { AutenticacaoContext } from "../contexts/AutenticacaoContext";
 
 export const ProdutosContext = createContext({});
 
@@ -12,6 +14,11 @@ export function ProdutosProvider({ children }) {
   const [carrinho, setCarrinho] = useState([]);
   const [ultimosVistos, setUltimosVistos] = useState([]);
   const [precoTotal, setPrecoTotal] = useState(0);
+  const [desconto, setDesconto] = useState(0);
+  const [valorTotal, setValorTotal] = useState(0);
+  const [calculoDesconto, setCalculoDesconto] = useState(0);
+
+  const { usuario } = useContext(AutenticacaoContext);
 
   useEffect(async () => {
     const resultado = await pegarProdutos();
@@ -31,6 +38,25 @@ export function ProdutosProvider({ children }) {
     setQuantidade(quantidade + 1);
     let novoPrecoTotal = precoTotal + produto.preco;
     setPrecoTotal(novoPrecoTotal);
+
+    if (usuario.pCompra) {
+      setDesconto(0.15);
+    } else if (precoTotal >= 200 && precoTotal < 500) {
+      setDesconto(0.05);
+    } else if (precoTotal >= 500) {
+      setDesconto(0.1);
+    } else {
+      setDesconto(0);
+    }
+
+    console.log(precoTotal + " precoTotal");
+
+    setCalculoDesconto(precoTotal * desconto);
+    console.log(calculoDesconto + " calculoDesconto");
+
+    setValorTotal(precoTotal - calculoDesconto);
+
+    console.log(valorTotal);
   }
 
   async function finalizarCompra() {
@@ -56,6 +82,8 @@ export function ProdutosProvider({ children }) {
         carrinho,
         viuProduto,
         finalizarCompra,
+        desconto,
+        valorTotal,
       }}
     >
       {children}

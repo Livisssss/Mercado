@@ -1,3 +1,10 @@
 {
-  "produtos": []
+  "produtos": [
+    {
+      "id": "6fd4",
+      "imagem": 3,
+      "texto": "Tenis bacana",
+      "preco": 100
+    }
+  ]
 }

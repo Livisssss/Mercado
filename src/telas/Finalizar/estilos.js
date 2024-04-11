@@ -39,5 +39,18 @@ export const estilos = (tema) => {
       color: tema.preto,
       textAlign: "center",
     },
+    desconto: {
+      color: "red",
+      fontSize: 17,
+      marginLeft: 15,
+      padding: 5,
+    },
+    valorTotal: {
+      color: "#4b9e47",
+      fontSize: 20,
+      marginLeft: 15,
+      padding: 5,
+      fontWeight: "bold",
+    },
   });
 };

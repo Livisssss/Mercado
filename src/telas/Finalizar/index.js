@@ -10,11 +10,12 @@ export default function Finalizar({ navigation }) {
   const estilo = estilos(temaEscolhido);
 
   const { usuario } = useContext(AutenticacaoContext);
-  const { quantidade, precoTotal, finalizarCompra } =
+  const { quantidade, precoTotal, finalizarCompra, desconto, valorTotal } =
     useContext(ProdutosContext);
 
   async function finalizando() {
     const resultado = await finalizarCompra();
+    usuario.pCompra = false;
     Alert.alert(resultado);
     navigation.navigate("Principal");
   }
@@ -27,13 +28,15 @@ export default function Finalizar({ navigation }) {
         <Text style={estilo.titulo}>Informações de entrega</Text>
         <Text style={estilo.dados}>Nome: {usuario?.nome}</Text>
         <Text style={estilo.dados}>Endereço: {usuario?.endereco}</Text>
-        <Text style={estilo.dados}>Email: {usuario?.email}</Text>
+        <Text style={estilo.dados}>Banco: {usuario?.banco}</Text>
         <Text style={estilo.dados}>Telefone: {usuario?.telefone}</Text>
       </View>
 
       <View style={estilo.titulo}>
         <Text style={estilo.dados}>Quantidade: {quantidade}</Text>
-        <Text style={estilo.dados}>Preço Total: R$ {precoTotal}</Text>
+        <Text style={estilo.dados}>Total dos itens: R$ {precoTotal}</Text>
+        <Text style={estilo.desconto}>Desconto: -{desconto * 100}%</Text>
+        <Text style={estilo.valorTotal}>Valor Total: R$ {valorTotal}</Text>
       </View>
 
       <TouchableOpacity style={estilo.botao} onPress={() => finalizando()}>

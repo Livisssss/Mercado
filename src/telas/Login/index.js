@@ -13,8 +13,7 @@ import { TemaContext } from "../../contexts/TemaContext";
 import { AutenticacaoContext } from "../../contexts/AutenticacaoContext";
 
 export default function Login({ navigation }) {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [user, setUser] = useState("");
 
   const { temaEscolhido } = useContext(TemaContext);
   const estilo = estilos(temaEscolhido);
@@ -22,7 +21,7 @@ export default function Login({ navigation }) {
   const { login } = useContext(AutenticacaoContext);
 
   function logandoNoSistema() {
-    const resultado = login(email, senha);
+    const resultado = login(user);
     if (resultado == "ok") {
       navigation.navigate("Principal");
     } else {
@@ -38,20 +37,11 @@ export default function Login({ navigation }) {
       <View style={estilo.inputArea}>
         <TextInput
           style={estilo.input}
-          placeholder="Email"
+          placeholder="Usuário"
           placeholderTextColor="#999"
           autoCapitalize="none"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <TextInput
-          style={estilo.input}
-          placeholder="Senha"
-          placeholderTextColor="#999"
-          autoCapitalize="none"
-          value={senha}
-          onChangeText={setSenha}
-          secureTextEntry={true}
+          value={user}
+          onChangeText={setUser}
         />
       </View>
 
