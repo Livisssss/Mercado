@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
   StatusBar,
   Alert,
+  Image,
 } from "react-native";
 import { estilos } from "./estilos";
 import { useContext } from "react";
 import { TemaContext } from "../../contexts/TemaContext";
 import { AutenticacaoContext } from "../../contexts/AutenticacaoContext";
+import imagemLogo from "../../imagens/logo.png";
 
 export default function Login({ navigation }) {
   const [user, setUser] = useState("");
@@ -36,7 +38,7 @@ export default function Login({ navigation }) {
     <View style={estilo.container}>
       <StatusBar />
 
-      <Text style={estilo.logo}>Fish Bowl</Text>
+      <Image style={estilo.logo} source={imagemLogo} />
 
       <Text style={estilo.titulo}>Login</Text>
 

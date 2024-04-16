@@ -1,33 +1,45 @@
-import imagemTenis from '../../imagens/tenis.jpeg';
-import imagemMesa from '../../imagens/mesa.png';
-import imagemCamisa from '../../imagens/camisa.jpeg';
-import imagemCadeira from '../../imagens/cadeira.jpeg';
-import imagemSofa from '../../imagens/sofa.png';
+import imagemAquario from "../../imagens/aquario.png";
+import imagemCarpa from "../../imagens/carpa.png";
+import imagemSquirtle from "../../imagens/squirtle.png";
+import imagemVara from "../../imagens/vara.png";
+import imagemJager from "../../imagens/jagermeister.png";
+import imagemTilapia from "../../imagens/tilapia.jpg";
+import imagemGalinha from "../../imagens/galinha.jpeg";
 
 export const produtos = [
   {
-    imagem: imagemTenis,
-    texto: "Tenis bacana",
-    preco: 100.00
+    imagem: imagemAquario,
+    texto: "Aquario nato",
+    preco: 100.0,
   },
   {
-    imagem: imagemMesa,
-    texto: "Mesa chique",
-    preco: 200.00
+    imagem: imagemCarpa,
+    texto: "Carpa chique",
+    preco: 200.0,
   },
   {
-    imagem: imagemCamisa,
-    texto: "Camisa bonita",
-    preco: 80.00
+    imagem: imagemVara,
+    texto: "Vara bonita",
+    preco: 80.0,
   },
   {
-    imagem: imagemCadeira,
-    texto: "Cadeira de trabalho",
-    preco: 150.00
+    imagem: imagemJager,
+    texto: "Bebida alfa",
+    preco: 150.0,
   },
   {
-    imagem: imagemSofa,
-    texto: "Sofá confortavel",
-    preco: 250.00
+    imagem: imagemSquirtle,
+    texto: "Tartaruga filhote",
+    preco: 250.0,
   },
-]
+  {
+    imagem: imagemTilapia,
+    texto: "Tilápia",
+    preco: 20.0,
+  },
+  {
+    imagem: imagemGalinha,
+    texto: "Galinha aquática",
+    preco: 300.0,
+  },
+];

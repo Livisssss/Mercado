@@ -1,22 +1,28 @@
 {
   "produtos": [
     {
-      "imagem": 7,
-      "texto": "Sofá confortavel",
-      "preco": 250,
-      "id": 1
+      "imagem": 8,
+      "texto": "Tilápia",
+      "preco": 20,
+      "id": 2
     },
     {
-      "imagem": 6,
-      "texto": "Cadeira de trabalho",
-      "preco": 150,
+      "imagem": 8,
+      "texto": "Tilápia",
+      "preco": 20,
       "id": 3
     },
     {
+      "imagem": 8,
+      "texto": "Tilápia",
+      "preco": 20,
+      "id": 4
+    },
+    {
       "imagem": 4,
-      "texto": "Mesa chique",
+      "texto": "Carpa chique",
       "preco": 200,
-      "id": 6
+      "id": 5
     }
   ]
 }

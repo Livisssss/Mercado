@@ -4,6 +4,7 @@ import {
   FlatList,
   StatusBar,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { Produto } from "../../componentes/Produto";
 import { produtos } from "./produtos";
@@ -14,6 +15,7 @@ import { useContext } from "react";
 import { TemaContext } from "../../contexts/TemaContext";
 import { AutenticacaoContext } from "../../contexts/AutenticacaoContext";
 import { ProdutosContext } from "../../contexts/ProdutosContext";
+import imagemLogo from "../../imagens/logo.png";
 
 export default function Principal({ navigation }) {
   const { temaEscolhido } = useContext(TemaContext);
@@ -25,6 +27,8 @@ export default function Principal({ navigation }) {
     <View style={estilo.container}>
       <StatusBar />
       <View style={estilo.tituloArea}>
+        <Image style={estilo.logo} source={imagemLogo} />
+
         <Text style={estilo.titulo}>Olá, {usuario?.nome}</Text>
         <View style={estilo.carrinhoArea}>
           <TouchableOpacity onPress={() => navigation.navigate("Resumo")}>

@@ -12,7 +12,7 @@ export const estilos = (tema) => {
       fontSize: 25,
       fontWeight: "bold",
       color: tema.texto,
-      marginBottom: 20,
+      marginBottom: 5,
     },
     inputArea: {
       height: 200,
@@ -24,7 +24,7 @@ export const estilos = (tema) => {
       height: 40,
       width: "90%",
       backgroundColor: tema.input,
-      marginBottom: 15,
+      marginBottom: 5,
       padding: 10,
       borderRadius: 5,
       color: tema.preto,
@@ -44,8 +44,10 @@ export const estilos = (tema) => {
       color: tema.preto,
     },
     logo: {
-      fontSize: 30,
-      backgroundColor: tema.botao,
+      width: 200,
+      height: 200,
+      resizeMode: "contain",
+      marginBottom: 15,
     },
   });
 };

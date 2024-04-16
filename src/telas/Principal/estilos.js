@@ -14,8 +14,8 @@ export const estilos = (tema) => {
       alignItems: "center",
       justifyContent: "space-around",
       flexDirection: "row",
-      paddingTop: Constants.statusBarHeight,
-      marginBottom: 16,
+      paddingTop: 20,
+      marginBottom: 9,
     },
     titulo: {
       fontSize: 20,
@@ -67,6 +67,11 @@ export const estilos = (tema) => {
     icon: {
       color: tema.texto,
       fontSize: 30,
+    },
+    logo: {
+      width: 100,
+      height: 100,
+      resizeMode: "contain",
     },
   });
 };

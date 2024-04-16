@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { ProdutosContext } from "./ProdutosContext";
 
 export const AutenticacaoContext = createContext({});
 
