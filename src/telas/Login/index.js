@@ -25,13 +25,19 @@ export default function Login({ navigation }) {
     if (resultado == "ok") {
       navigation.navigate("Principal");
     } else {
-      Alert.alert(resultado);
+      Alert.alert(
+        "Erro ao autenticar",
+        "O nome de usuário deve começar com uma letra, conter apenas letras e números e ter de 5 a 8 caracteres."
+      );
     }
   }
 
   return (
     <View style={estilo.container}>
       <StatusBar />
+
+      <Text style={estilo.logo}>Fish Bowl</Text>
+
       <Text style={estilo.titulo}>Login</Text>
 
       <View style={estilo.inputArea}>

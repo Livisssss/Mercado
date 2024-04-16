@@ -43,5 +43,9 @@ export const estilos = (tema) => {
       fontWeight: "400",
       color: tema.preto,
     },
+    logo: {
+      fontSize: 30,
+      backgroundColor: tema.botao,
+    },
   });
 };

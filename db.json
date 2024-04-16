@@ -1,10 +1,22 @@
 {
   "produtos": [
     {
-      "id": "6fd4",
-      "imagem": 3,
-      "texto": "Tenis bacana",
-      "preco": 100
+      "imagem": 7,
+      "texto": "Sofá confortavel",
+      "preco": 250,
+      "id": 1
+    },
+    {
+      "imagem": 6,
+      "texto": "Cadeira de trabalho",
+      "preco": 150,
+      "id": 3
+    },
+    {
+      "imagem": 4,
+      "texto": "Mesa chique",
+      "preco": 200,
+      "id": 6
     }
   ]
 }

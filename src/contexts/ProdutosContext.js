@@ -14,9 +14,8 @@ export function ProdutosProvider({ children }) {
   const [carrinho, setCarrinho] = useState([]);
   const [ultimosVistos, setUltimosVistos] = useState([]);
   const [precoTotal, setPrecoTotal] = useState(0);
-  const [desconto, setDesconto] = useState(0);
-  const [valorTotal, setValorTotal] = useState(0);
-  const [calculoDesconto, setCalculoDesconto] = useState(0);
+  const [descontoCompra, setDescontoCompra] = useState(0);
+  const [descontoTotal, setDescontoTotal] = useState(0);
 
   const { usuario } = useContext(AutenticacaoContext);
 
@@ -38,26 +37,33 @@ export function ProdutosProvider({ children }) {
     setQuantidade(quantidade + 1);
     let novoPrecoTotal = precoTotal + produto.preco;
     setPrecoTotal(novoPrecoTotal);
+    let desconto = calculaDesconto(novoPrecoTotal);
+    console.log("O valor de desconto é" + desconto);
+    setDescontoCompra(desconto);
 
-    if (usuario.pCompra) {
-      setDesconto(0.15);
-    } else if (precoTotal >= 200 && precoTotal < 500) {
-      setDesconto(0.05);
-    } else if (precoTotal >= 500) {
-      setDesconto(0.1);
-    } else {
-      setDesconto(0);
-    }
+    let totalDesconto = novoPrecoTotal * desconto;
+    setDescontoTotal(totalDesconto);
+    console.log(`O pdesconto total dos itens é ${totalDesconto}`);
 
-    console.log(precoTotal + " precoTotal");
-
-    setCalculoDesconto(precoTotal * desconto);
-    console.log(calculoDesconto + " calculoDesconto");
-
-    setValorTotal(precoTotal - calculoDesconto);
-
-    console.log(valorTotal);
+    console.log(`O preço total dos itens é ${novoPrecoTotal}`);
   }
+
+  const calculaDesconto = (novoPrecoTotal) => {
+    if (usuario.pCompra) {
+      return 0.15;
+    }
+    console.log("n eh a primeira" + typeof novoPrecoTotal + novoPrecoTotal);
+    if (novoPrecoTotal >= 200 && novoPrecoTotal < 500) {
+      return 0.05;
+    }
+    console.log("mais do que 500");
+
+    if (novoPrecoTotal >= 500) {
+      return 0.1;
+    }
+    console.log("menos que 200");
+    return 0;
+  };
 
   async function finalizarCompra() {
     try {
@@ -82,8 +88,11 @@ export function ProdutosProvider({ children }) {
         carrinho,
         viuProduto,
         finalizarCompra,
-        desconto,
-        valorTotal,
+        descontoCompra,
+        descontoTotal,
+        setQuantidade,
+        setPrecoTotal,
+        setCarrinho,
       }}
     >
       {children}

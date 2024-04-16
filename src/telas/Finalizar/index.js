@@ -10,8 +10,14 @@ export default function Finalizar({ navigation }) {
   const estilo = estilos(temaEscolhido);
 
   const { usuario } = useContext(AutenticacaoContext);
-  const { quantidade, precoTotal, finalizarCompra, desconto, valorTotal } =
-    useContext(ProdutosContext);
+  const {
+    quantidade,
+    precoTotal,
+    finalizarCompra,
+    descontoCompra,
+    valorTotal,
+    descontoTotal,
+  } = useContext(ProdutosContext);
 
   async function finalizando() {
     const resultado = await finalizarCompra();
@@ -35,8 +41,10 @@ export default function Finalizar({ navigation }) {
       <View style={estilo.titulo}>
         <Text style={estilo.dados}>Quantidade: {quantidade}</Text>
         <Text style={estilo.dados}>Total dos itens: R$ {precoTotal}</Text>
-        <Text style={estilo.desconto}>Desconto: -{desconto * 100}%</Text>
-        <Text style={estilo.valorTotal}>Valor Total: R$ {valorTotal}</Text>
+        <Text style={estilo.desconto}>Desconto: - {descontoCompra * 100}%</Text>
+        <Text style={estilo.valorTotal}>
+          Valor Total: R$ {precoTotal - descontoTotal}
+        </Text>
       </View>
 
       <TouchableOpacity style={estilo.botao} onPress={() => finalizando()}>
