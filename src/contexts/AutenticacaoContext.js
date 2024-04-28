@@ -7,10 +7,10 @@ export function AutenticacaoProvider({ children }) {
 
   const validadeUser = (user) => {
     if (
-      user.charAt(0) &&
+      isNaN(user.charAt(0)) &&
       user.length >= 5 &&
       user.length <= 8 &&
-      /^[a-zA-Z]+$/.test(user)
+      /^[a-zA-Z0-9]+$/.test(user)
     ) {
       return true;
     }

@@ -38,30 +38,22 @@ export function ProdutosProvider({ children }) {
     let novoPrecoTotal = precoTotal + produto.preco;
     setPrecoTotal(novoPrecoTotal);
     let desconto = calculaDesconto(novoPrecoTotal);
-    console.log("O valor de desconto é" + desconto);
     setDescontoCompra(desconto);
 
     let totalDesconto = novoPrecoTotal * desconto;
     setDescontoTotal(totalDesconto);
-    console.log(`O pdesconto total dos itens é ${totalDesconto}`);
-
-    console.log(`O preço total dos itens é ${novoPrecoTotal}`);
   }
 
   const calculaDesconto = (novoPrecoTotal) => {
     if (usuario.pCompra) {
       return 0.15;
     }
-    console.log("n eh a primeira" + typeof novoPrecoTotal + novoPrecoTotal);
     if (novoPrecoTotal >= 200 && novoPrecoTotal < 500) {
       return 0.05;
     }
-    console.log("mais do que 500");
-
     if (novoPrecoTotal >= 500) {
       return 0.1;
     }
-    console.log("menos que 200");
     return 0;
   };
 

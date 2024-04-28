@@ -1,28 +1,3 @@
 {
-  "produtos": [
-    {
-      "imagem": 8,
-      "texto": "Tilápia",
-      "preco": 20,
-      "id": 2
-    },
-    {
-      "imagem": 8,
-      "texto": "Tilápia",
-      "preco": 20,
-      "id": 3
-    },
-    {
-      "imagem": 8,
-      "texto": "Tilápia",
-      "preco": 20,
-      "id": 4
-    },
-    {
-      "imagem": 4,
-      "texto": "Carpa chique",
-      "preco": 200,
-      "id": 5
-    }
-  ]
+  "produtos": []
 }
