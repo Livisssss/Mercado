@@ -15,7 +15,7 @@ No terminal, digite os comandos a seguir:
 
 ```bash
 # Clonar esse repositório
-$ git clone https://github.com/alura-cursos/react-native-context-api.git
+$ git clone <link>
 
 # Vá para o ropositório
 $ cd Mercado
