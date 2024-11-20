@@ -2,8 +2,11 @@
 ## :rocket: Tecnologias
 
 Esse projeto foi desenvolvido com a utilização das seguintes tecnologias:
-- [React Native][rn]
-- [Expo][expo]
+- React Native
+- Context API
+- AsyncStorage
+- Axios
+- Expo cli
 
 ## :information_source: Como usar
 
@@ -23,18 +26,22 @@ $ cd Mercado
 # Instale as dependências
 $ npm install
 ```
+### Alterar IP
+
+No arquivo 'src/servicos/api.js' é necessário adicionar na URL o IP atual da máquina em que está sendo executado o projeto.
 
 ### Executar o Mobile
 
 ```bash
 # Irá instalar o EXPO e rodar o projeto
-$ sudo npm run android --verbose
+$ npm run android --verbose
 ```
 
 ### Executar a Web API
 
 ```bash
 # Sistitua o IP pelo que o EXPO mostra, lembre de colocar esse mesmo IP na requisição de api
-$ sudo $(which json-server) --watch --host 192.168.209.163 db.json
+$ nvm use v16
+$ json-server --watch --host 192.168.1.102 db.json
 ```
 
