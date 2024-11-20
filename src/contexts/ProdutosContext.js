@@ -1,10 +1,15 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import {
   pegarProdutos,
   salvarProduto,
   removerProduto,
 } from "../servicos/requisicoes/produtos";
-
 import { AutenticacaoContext } from "../contexts/AutenticacaoContext";
 
 export const ProdutosContext = createContext({});
@@ -19,29 +24,42 @@ export function ProdutosProvider({ children }) {
 
   const { usuario } = useContext(AutenticacaoContext);
 
-  useEffect(async () => {
-    const resultado = await pegarProdutos();
-    setCarrinho(resultado);
-    setQuantidade(resultado.length);
+  useEffect(() => {
+    const loadProdutos = async () => {
+      const resultado = await pegarProdutos();
+      setCarrinho(resultado);
+      setQuantidade(resultado.length);
+      atualizarPrecoTotal(resultado);
+    };
+
+    loadProdutos();
   }, []);
+
+  const atualizarPrecoTotal = (novoCarrinho) => {
+    let novoPrecoTotal = novoCarrinho.reduce(
+      (acc, item) => acc + item.preco,
+      0
+    );
+    setPrecoTotal(novoPrecoTotal);
+
+    let desconto = calculaDesconto(novoPrecoTotal);
+    setDescontoCompra(desconto);
+
+    let totalDesconto = novoPrecoTotal * desconto;
+    setDescontoTotal(totalDesconto);
+  };
 
   async function viuProduto(produto) {
     const resultado = await salvarProduto(produto);
-    const novoItemCarinho = [...carrinho, resultado];
-    setCarrinho(novoItemCarinho);
+    const novoItemCarrinho = [...carrinho, resultado];
+    setCarrinho(novoItemCarrinho);
 
     let novoUltimosVistos = new Set(ultimosVistos);
     novoUltimosVistos.add(produto);
     setUltimosVistos([...novoUltimosVistos]);
 
     setQuantidade(quantidade + 1);
-    let novoPrecoTotal = precoTotal + produto.preco;
-    setPrecoTotal(novoPrecoTotal);
-    let desconto = calculaDesconto(novoPrecoTotal);
-    setDescontoCompra(desconto);
-
-    let totalDesconto = novoPrecoTotal * desconto;
-    setDescontoTotal(totalDesconto);
+    atualizarPrecoTotal(novoItemCarrinho);
   }
 
   const calculaDesconto = (novoPrecoTotal) => {
@@ -57,14 +75,35 @@ export function ProdutosProvider({ children }) {
     return 0;
   };
 
+  const removerProdutoCarrinho = useCallback(
+    async (produto) => {
+      try {
+        const novoCarrinho = carrinho.filter((item) => item.id !== produto.id);
+        setCarrinho(novoCarrinho);
+        setQuantidade(novoCarrinho.length);
+
+        atualizarPrecoTotal(novoCarrinho);
+
+        await removerProduto(produto);
+      } catch (error) {
+        console.error("Erro ao remover produto do carrinho:", error);
+      }
+    },
+    [carrinho]
+  );
+
   async function finalizarCompra() {
     try {
-      carrinho.forEach(async (produto) => {
-        await removerProduto(produto);
-      });
+      await Promise.all(
+        carrinho.map(async (produto) => await removerProduto(produto))
+      );
+
+      setCarrinho([]);
       setQuantidade(0);
       setPrecoTotal(0);
-      setCarrinho([]);
+      setDescontoCompra(0);
+      setDescontoTotal(0);
+
       return "Compra finalizada com sucesso!";
     } catch (erro) {
       return "Erro ao finalizar a compra, tente novamente!";
@@ -79,6 +118,7 @@ export function ProdutosProvider({ children }) {
         precoTotal,
         carrinho,
         viuProduto,
+        removerProdutoCarrinho,
         finalizarCompra,
         descontoCompra,
         descontoTotal,

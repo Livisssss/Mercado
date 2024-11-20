@@ -15,7 +15,6 @@ export default function Finalizar({ navigation }) {
     precoTotal,
     finalizarCompra,
     descontoCompra,
-    valorTotal,
     descontoTotal,
   } = useContext(ProdutosContext);
 
@@ -40,10 +39,10 @@ export default function Finalizar({ navigation }) {
 
       <View style={estilo.titulo}>
         <Text style={estilo.dados}>Quantidade: {quantidade}</Text>
-        <Text style={estilo.dados}>Total dos itens: R$ {precoTotal}</Text>
+        <Text style={estilo.dados}>Total dos itens: R$ {precoTotal.toFixed(2)}</Text>
         <Text style={estilo.desconto}>Desconto: - {descontoCompra * 100}%</Text>
         <Text style={estilo.valorTotal}>
-          Valor Total: R$ {precoTotal - descontoTotal}
+          Valor Total: R$ {(precoTotal - descontoTotal).toFixed(2)}
         </Text>
       </View>
 

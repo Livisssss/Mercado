@@ -7,6 +7,10 @@ import imagemTilapia from "../../imagens/tilapia.jpg";
 import imagemGalinha from "../../imagens/galinha.jpeg";
 import imagemBola from "../../imagens/ball.png";
 import imagemGato from "../../imagens/gato.jpg";
+import imagemTamagotchi from "../../imagens/tamagotchi.png";
+import imagemPedra from "../../imagens/pedra.png";
+import imagemTenis from "../../imagens/tenis.png";
+import imagemCadeira from "../../imagens/cadeira.png";
 
 export const produtos = [
   {
@@ -35,9 +39,29 @@ export const produtos = [
     preco: 60.0,
   },
   {
+    imagem: imagemPedra,
+    texto: "Pedra filosofal",
+    preco: 1500.0,
+  },
+  {
+    imagem: imagemTenis,
+    texto: "Tênis anti-água",
+    preco: 100.0,
+  },
+  {
+    imagem: imagemCadeira,
+    texto: "Cadeira do líder",
+    preco: 500.0,
+  },
+  {
     imagem: imagemJager,
     texto: "Bebida alfa",
     preco: 150.0,
+  },
+  {
+    imagem: imagemTamagotchi,
+    texto: "Tamagotchi",
+    preco: 199.0,
   },
   {
     imagem: imagemGato,

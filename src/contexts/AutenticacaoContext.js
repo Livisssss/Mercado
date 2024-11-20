@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 export const AutenticacaoContext = createContext({});
 
@@ -8,8 +8,7 @@ export function AutenticacaoProvider({ children }) {
   const validadeUser = (user) => {
     if (
       isNaN(user.charAt(0)) &&
-      user.length >= 5 &&
-      user.length <= 8 &&
+      user.length >= 3 &&
       /^[a-zA-Z0-9]+$/.test(user)
     ) {
       return true;
@@ -22,7 +21,7 @@ export function AutenticacaoProvider({ children }) {
       if (validadeUser(user)) {
         setUsuario({
           nome: user,
-          endereco: "Rua dos tongo",
+          endereco: "Rua dos Pescadores, 123 - Bairro da Isca",
           banco: "Tigrinho",
           telefone: "(54) 98765-4321",
           pCompra: true,

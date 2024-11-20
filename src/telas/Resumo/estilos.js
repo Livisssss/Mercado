@@ -26,18 +26,6 @@ export const estilos = (tema) => {
       flex: 1,
       width: "100%",
     },
-    ultimosVistos: {
-      marginBottom: 16,
-      paddingVertical: 16,
-      backgroundColor: tema.ultimosVistos,
-    },
-    tituloUltimosVistos: {
-      fontSize: 18,
-      fontWeight: "bold",
-      color: tema.titulo,
-      marginHorizontal: 16,
-      marginBottom: 8,
-    },
     carrinhoArea: {
       flexDirection: "row",
       alignItems: "flex-end",
@@ -79,6 +67,30 @@ export const estilos = (tema) => {
       fontSize: 18,
       fontWeight: "bold",
       color: tema.preto,
+      textAlign: "center",
+    },
+    botaoDesabilitado: {
+      opacity: 0.5,
+    },
+    itemCarrinho: {
+      position: "relative",
+      marginBottom: 16,
+    },
+    botaoRemover: {
+      position: "absolute",
+      top: 5,
+      right: 5,
+      backgroundColor: "#FF6347",
+      borderRadius: 50,
+      width: 30,
+      height: 30,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    botaoRemoverTexto: {
+      color: "#fff",
+      fontWeight: "bold",
+      fontSize: 18,
       textAlign: "center",
     },
   });

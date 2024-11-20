@@ -29,7 +29,7 @@ export default function Login({ navigation }) {
     } else {
       Alert.alert(
         "Erro ao autenticar",
-        "O nome de usuário deve começar com uma letra, conter apenas letras e números e ter de 5 a 8 caracteres."
+        "O nome de usuário deve começar com uma letra, conter apenas letras e números e ter mais de 3 caracteres."
       );
     }
   }

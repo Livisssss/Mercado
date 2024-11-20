@@ -27,17 +27,17 @@ export default function Rotas() {
         <Tab.Screen
           name="Configurações"
           component={Configuracao}
-          options={{ headerTitleAlign: "center" }}
+          options={{ headerShown: false }}      
         />
         <Tab.Screen
           name="Resumo"
           component={Resumo}
-          options={{ headerTitleAlign: "center" }}
-        />
+          options={{ headerShown: false }}      
+       />
         <Tab.Screen
           name="Finalizar"
           component={Finalizar}
-          options={{ headerTitleAlign: "center" }}
+          options={{ headerShown: false }}      
         />
       </Tab.Navigator>
     </NavigationContainer>

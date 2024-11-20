@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import {
   Text,
   View,
@@ -9,7 +10,6 @@ import { Produto } from "../../componentes/Produto";
 import { estilos } from "./estilos";
 import { Feather } from "react-native-vector-icons";
 import MaterialCommunityIcons from "react-native-vector-icons/Feather";
-import { useContext } from "react";
 import { TemaContext } from "../../contexts/TemaContext";
 import { AutenticacaoContext } from "../../contexts/AutenticacaoContext";
 import { ProdutosContext } from "../../contexts/ProdutosContext";
@@ -18,7 +18,12 @@ export default function Resumo({ navigation }) {
   const { temaEscolhido } = useContext(TemaContext);
   const estilo = estilos(temaEscolhido);
   const { usuario } = useContext(AutenticacaoContext);
-  const { quantidade, carrinho } = useContext(ProdutosContext);
+  const { quantidade, carrinho, removerProdutoCarrinho } =
+    useContext(ProdutosContext);
+
+  const handleRemoverProduto = async (produto) => {
+    await removerProdutoCarrinho(produto);
+  };
 
   return (
     <View style={estilo.container}>
@@ -55,15 +60,29 @@ export default function Resumo({ navigation }) {
 
       <FlatList
         data={carrinho}
-        keyExtractor={(item) => Math.random()}
-        renderItem={({ item }) => <Produto item={item} adicionar={false} />}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={estilo.itemCarrinho}>
+            <Produto item={item} adicionar={false} />
+            <TouchableOpacity
+              onPress={() => handleRemoverProduto(item)}
+              style={estilo.botaoRemover}
+            >
+              <Text style={estilo.botaoRemoverTexto}>X</Text>
+            </TouchableOpacity>
+          </View>
+        )}
         style={estilo.lista}
         showsVerticalScrollIndicator={false}
       />
 
       <TouchableOpacity
-        style={estilo.botao}
+        style={[
+          estilo.botao,
+          carrinho.length === 0 ? estilo.botaoDesabilitado : null,
+        ]}
         onPress={() => navigation.navigate("Finalizar")}
+        disabled={carrinho.length === 0}
       >
         <Text style={estilo.botaoTexto}>Finalizar</Text>
       </TouchableOpacity>
